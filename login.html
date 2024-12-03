@@ -1,0 +1,71 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Automation Partners AI">
+    <title>Lead Gen Z - Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css">
+    
+  
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+</head>
+
+<body ng-app="leadsApp" ng-controller="leadsController" ng-cloak>
+
+    <header>
+        <a id="home" href="./login.html"><img src="./ai-automation-partners-logo.png" alt="AI Automation Partners Logo"></a>
+        <a id="login" href="./search.html"><i class="fa-solid fa-right-to-bracket"></i> <span class="pc">Login</span></a>
+        <h1 class="hide-in-mobile">Lead Gen Z - Login</h1>
+    </header>
+
+   
+    <section id="main" style="background: url('./img/bg-home.jpg') center center no-repeat fixed; background-size: cover;">
+        <div id="cont">
+            <div class="form" name="loginForm">
+                <div class="form-grid-container">
+                    <div class="form-grid-item">
+                        <label for="userEmail">Email:
+                            <span ng-if="userEmail">
+                                <small ng-if="!isEmailValid" class="err"><i class="fa-solid fa-circle-xmark"></i> Invalid Email Format</small>
+                                <small ng-if="isEmailValid && !isEmailRegistered" class="err"><i class="fa-solid fa-circle-xmark"></i> Email is not registered</small>
+                                <small ng-if="isEmailValid && isEmailRegistered" class="ok"><i class="fa-solid fa-circle-check"></i></small>
+                            </span>
+                        </label>
+                        <input type="email" id="userEmail" ng-model="userEmail" required ng-change="checkEmail()">
+                    </div>
+                    <div class="form-grid-item">
+                        <label for="userPass">Password:</label>
+                        <input type="password" id="userPass" ng-model="userPass" required>
+                    </div>
+                    <div class="form-grid-item">
+                        <button ng-disabled="!isEmailValid || !isEmailRegistered || !userPass" type="button" ng-click="loginUser()">Login</button>
+                    </div>
+                    <div class="form-grid-item">
+                        <div ng-if="loginMessage">
+                            <span ng-if="isLoginSuccessful" class="ok">{{ loginMessage }}</span>
+                            <span ng-if="!isLoginSuccessful" class="err">{{ loginMessage }}</span>
+                        </div>
+                    </div>
+                </div>
+                <p>Don't have an account? <a href="./register.html">Register here</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p><small>Address 11 Chatham Ct, Middlebury, CT 06762, USA<br>Automation Partners AI LLC | <i class="fa-regular fa-copyright"></i> 2024 All Rights Reserved</small></p>
+    </footer>
+
+    <!-- Local JavaScript files -->
+    <script src="./angular.min.js"></script>
+    <script src="./angular-sanitize.min.js"></script>
+    <script src="./app.js"></script>
+</body>
